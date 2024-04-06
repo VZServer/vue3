@@ -1,7 +1,8 @@
 <template>
 
-    <button v-on:click="changeView">顯示單向綁定</button>
-    <button>顯示雙向綁定</button>
+    <button @click="changeView(1)">顯示單向綁定</button>
+    <button @click="changeView(2)">顯示雙向綁定</button> <!--// 你知道其實@click就等同於v-on:click嗎-->
+    <button @click="changeView(1000)">沒畫面</button>
 
 
     <div class="container-1" v-if="view === 1">
@@ -14,6 +15,12 @@
         <input type="text" v-model="text" />
         <p>{{ text }}</p>
     </div>
+
+
+
+    <div v-if="view !== 2 && view !== 1">
+        沒畫面
+    </div>
 </template>
 
 <script setup>
@@ -24,8 +31,8 @@ const data = 'Hello Vue'
 const text = ref("雙向綁定!")
 const view = ref(1)
 
-const changeView = () => {
-    view.value = 2
+const changeView = (index) => {
+    view.value = index
 }
 
 </script>
